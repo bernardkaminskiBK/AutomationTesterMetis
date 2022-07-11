@@ -9,6 +9,14 @@ public class BankovyUcet {
         this.aktualnyZostatok = aktualnyZostatok;
     }
 
+    public BankovyUcet(double aktualnyZostatok) {
+        this.aktualnyZostatok = aktualnyZostatok;
+    }
+
+    public BankovyUcet() {
+        this.aktualnyZostatok = 0;
+    }
+
     public void vloz(double ciastka) {
         aktualnyZostatok += ciastka;
     }

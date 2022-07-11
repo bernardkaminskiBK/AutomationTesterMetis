@@ -109,6 +109,4 @@ public class ParameterTest {
         System.out.println("car: " + car);
     }
 
-    //TODO: tu pokracujem 1:25:00 Webinar 19
-
 }

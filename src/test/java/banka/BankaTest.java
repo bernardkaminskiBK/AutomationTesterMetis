@@ -2,6 +2,8 @@ package banka;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -14,11 +16,23 @@ public class BankaTest {
         Assertions.assertEquals(0, banka.getPocetUctov());
     }
 
+    // Classic test
     @Test
     public void zalozenieUctu_Test() {
         banka.zalozUcet(new BankovyUcet(1, 1000.0));
         banka.zalozUcet(new BankovyUcet(2, 500.0));
         banka.zalozUcet(new BankovyUcet(3, 700.0));
+
+        Assertions.assertEquals(3, banka.getPocetUctov());
+    }
+
+    // Parametrized test example
+    @ParameterizedTest
+    @CsvFileSource(resources = "bankove_ucty.csv", numLinesToSkip = 1)
+    public void zalozenieUctuParametrized_Test(int cisloUctu, double aktualnyZostatok) {
+        banka.zalozUcet(new BankovyUcet(cisloUctu, aktualnyZostatok));
+        banka.zalozUcet(new BankovyUcet(cisloUctu, aktualnyZostatok));
+        banka.zalozUcet(new BankovyUcet(cisloUctu, aktualnyZostatok));
 
         Assertions.assertEquals(3, banka.getPocetUctov());
     }
