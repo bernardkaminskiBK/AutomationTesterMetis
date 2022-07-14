@@ -1,0 +1,26 @@
+ cislo1,  cislo2, expectedResult
+5,5,"Sucet: 10.0
+Sucin: 25.0
+Rozdiel: 0.0
+Podiel: 1.0
+Zvysok: 0.0"
+50,25.5,"Sucet: 75.5
+Sucin: 1275.0
+Rozdiel: 24.5
+Podiel: 1.9607843137254901
+Zvysok: 24.5"
+128,3.25,"Sucet: 131.25
+Sucin: 416.0
+Rozdiel: 124.75
+Podiel: 39.38461538461539
+Zvysok: 1.25"
+-25.08,5,"Sucet: -20.08
+Sucin: -125.39999999999999
+Rozdiel: -30.08
+Podiel: -5.016
+Zvysok: -0.0799999999999983"
+1500,25,"Sucet: 1525.0
+Sucin: 37500.0
+Rozdiel: 1475.0
+Podiel: 60.0
+Zvysok: 0.0"
