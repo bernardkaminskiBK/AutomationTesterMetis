@@ -1,16 +1,38 @@
 package banka;
 
+import listeners.Listener;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
-import java.lang.reflect.InvocationTargetException;
+import java.util.concurrent.TimeUnit;
 
+@ExtendWith(Listener.class)
 public class BankaTest {
-
+    /*
+          spustanie tetov cez maven napriklad:
+          mvn  test -Dtest=banka.BankaTest
+          mvn  test -Dtest=banka.BankaTest,bankoveUcty.BankovyUcetTest
+    */
     Banka banka = new Banka();
+
+    @Timeout(value = 5, unit = TimeUnit.SECONDS)
+    @ParameterizedTest
+    @ValueSource(ints = {4500, 5000, 6000})
+    public void testPodrzanieVlakna(int trvanieVMilisekundach) throws InterruptedException {
+        Thread.sleep(trvanieVMilisekundach);
+    }
+
+    @VlastnaAnotacia
+    public void vlastnaAnotaciaTest() {
+        System.out.println("Spustena metoda vlastnou anotaciou test.");
+    }
 
     @Test
     public void testGetPocetUctov() {
@@ -38,6 +60,7 @@ public class BankaTest {
         Assertions.assertEquals(3, banka.getPocetUctov());
     }
 
+    @Tag("sanity")
     @Test
     public void zmazanieUctu_Test() {
         banka.zalozUcet(new BankovyUcet(1, 1000.0));
@@ -49,6 +72,7 @@ public class BankaTest {
         Assertions.assertEquals(2, banka.getPocetUctov());
     }
 
+    @Tag("api")
     @Test
     public void pocetUctovZostatkomVyssimAko_500_Test() {
         banka.zalozUcet(new BankovyUcet(1, 1000.0));
@@ -61,6 +85,8 @@ public class BankaTest {
         Assertions.assertEquals(3, actual);
     }
 
+    @Tag("api")
+    @Tag("sanity")
     @Test
     public void celkovyZostatokNaVsetkychUctoch_Test() {
         banka.zalozUcet(new BankovyUcet(1, 1000.0));
@@ -70,6 +96,8 @@ public class BankaTest {
         Assertions.assertEquals(2200, banka.getCelkovyZostatok());
     }
 
+    @Tag("api")
+    @Tag("sanity")
     @Test
     public void zmazanieNeexistujucehoUctu_Test() {
         banka.zmazUcet(1);
