@@ -1,6 +1,7 @@
 package banka;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
@@ -70,7 +71,7 @@ public class BankaTest {
     }
 
     @Test
-    public void zmazanieNeexistujucehoUctu_Test() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public void zmazanieNeexistujucehoUctu_Test() {
         banka.zmazUcet(1);
         Assertions.assertEquals(0, banka.getPocetUctov());
     }
